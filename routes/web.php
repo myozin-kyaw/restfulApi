@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +20,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::resource('posts', PostController::class)->names('posts');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

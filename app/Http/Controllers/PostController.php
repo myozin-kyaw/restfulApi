@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class PostController extends Controller
 {
@@ -14,7 +15,16 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::get();
+        $posts = Post::get();
+        return [
+            $posts,
+            view('post.index', compact('posts'))
+        ];
+    }
+
+    public function create()
+    {
+        return view('post.create');
     }
 
     /**
@@ -25,8 +35,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = Post::create($request->all());
-        return $post;
+        Post::create([
+            'title' => $request->title,
+            'description' => $request->desc,
+            'author' => $request->author
+        ]);
+        return redirect('/posts')->with('status', 'Post successfuly created');
     }
 
     /**
@@ -39,6 +53,12 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         return $post;
+    }
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -63,6 +83,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        return Post::destroy($id);
+        $post = Post::destroy($id);
+        return redirect('/posts')->with('status', 'Post successfuly deleted');
     }
 }
