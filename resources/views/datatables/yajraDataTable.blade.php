@@ -71,15 +71,15 @@
                 "serverSide" : true,
                 "ajax" : "{{ route('api.students.index') }}",
                 "columns" : [
-                    { "id" : "id" },
-                    { "data" : "name" },
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
                     { "data" : "age" },
                     { "data" : "email" },
                     { "data" : "phone" },
                     { "data" : "address" }
                 ]
-            })
-        })
+            });
+        });
     </script>
     
 @endsection
