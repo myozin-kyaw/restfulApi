@@ -15,6 +15,7 @@
                     @endif
 
                     <a href="{{ route('posts.index') }}" class="btn btn-primary">Go to posts</a>
+                    <a href="{{ url('simpleDatatable') }}" class="btn btn-primary">Go to Test Datable</a>
                 </div>
             </div>
         </div>

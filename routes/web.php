@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -24,3 +25,6 @@ Route::resource('posts', PostController::class)->names('posts');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/simpleDatatable', [HomeController::class, 'simpleDatatable']);
+Route::get('/laravelDatatable', [HomeController::class, 'laravelDatatable']);
+Route::get('/yajraAjaxDatatable', [HomeController::class, 'yajraAjaxDatatable']);
