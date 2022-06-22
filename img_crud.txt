@@ -1,0 +1,40 @@
+# C
+
+$file = $request->img;
+$filename = time() . '.' . $file->getClientOriginalExtension();
+$file->storeAs(
+    'images', $filename
+);
+Slider::create([
+    'img' => $filename
+]);
+_________________________________
+
+#U
+
+imgFile = Model::findOrFail($id);
+$file = $request->file('img');
+if ($file) {
+    $filename = time() . '.' . $file->getClientOriginalExtension();
+    $file->storeAs(
+        '/images', $filename
+    );
+    if ($imgFile->img) {
+        Storage::delete('sliders/'.$imgFile->img);
+    }
+} else {
+    $filename = $imgFile->img;
+}
+$imgFile->update([
+    'img' => $filename
+]);
+_________________________________
+
+#D
+
+Storage::delete('file.jpg');
+Storage::delete(['file.jpg', 'file2.jpg']);
+
+#D directory
+Storage::deleteDirectory($directory);
+
